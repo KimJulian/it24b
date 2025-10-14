@@ -39,7 +39,7 @@
         .then(response => response.json())
         .then(data => {
             data.forEach(pin=>{
-                const marker = L.marker([pin.lat, pin.lang]).addTo(map);
+                const marker = L.marker([pin.lat, pin.lng]).addTo(map);
                 marker.bindPopup(`${pin.name}<br>${pin.description}`);
                 console.log(`{pin.name} Loaded ` + Date());
             });
