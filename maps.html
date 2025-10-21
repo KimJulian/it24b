@@ -16,6 +16,9 @@
         #map {
             height: 300px;
         }
+        .popup-image{
+            
+        }
     </style>
 
 </head>
@@ -40,7 +43,13 @@
         .then(data => {
             data.forEach(pin=>{
                 const marker = L.marker([pin.lat, pin.lng]).addTo(map);
-                marker.bindPopup(`${pin.name}<br>${pin.description}`);
+
+                const img = `<img src='${pin.img}' class="popup-image">`;
+                marker.bindPopup(`
+                ${img} <br>
+                <br>${pin.title}
+                ${pin.description}
+                `);
                 console.log(`{pin.name} Loaded ` + Date());
             });
         })
