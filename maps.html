@@ -17,7 +17,8 @@
             height: 300px;
         }
         .popup-image{
-            
+            max-width: 200px;
+            height: auto;
         }
     </style>
 
@@ -47,7 +48,7 @@
                 const img = `<img src='${pin.img}' class="popup-image">`;
                 marker.bindPopup(`
                 ${img} <br>
-                <br>${pin.title}
+                <br>${pin.title}<br>
                 ${pin.description}
                 `);
                 console.log(`{pin.name} Loaded ` + Date());
