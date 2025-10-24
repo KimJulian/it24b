@@ -34,6 +34,12 @@
             maxZoom:19,
             attribution:'&copy; OpenStreetMap contributions'
         })
+
+        //Satelite
+        const Satelite = L.tileLayer(
+            'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+            {attribution:'Tiles {c} Esri - Source, Maxar, Earthstar Geographics, and GIs User Community'}
+        );
     }
     document.addEventListener("DOMContentLoaded",()=>{
         initMap('campus-map.json');
