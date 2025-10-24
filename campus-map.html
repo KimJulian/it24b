@@ -47,7 +47,18 @@
         const markerGroups = {};
 
         fetch(mapDataUrl)
-        
+        .then(response => response.json())
+        .then(data=>{
+            data.forEach(pin=> {
+                const type = pint.locationType || "Other";
+                 
+                //Create Marker Group
+                if(!markerGroups[type]){
+                    markerGroups[type] = L.layerGroup();
+                }
+
+            })
+        })
     }
     document.addEventListener("DOMContentLoaded",()=>{
         initMap('campus-map.json');
