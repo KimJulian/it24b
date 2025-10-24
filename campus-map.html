@@ -40,6 +40,14 @@
             'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
             {attribution:'Tiles {c} Esri - Source, Maxar, Earthstar Geographics, and GIs User Community'}
         );
+
+        OpenStreetMap.addTo(Map);
+        console.log("Base map tile layer loaded" + Date());
+
+        const markerGroups = {};
+
+        fetch(mapDataUrl)
+        
     }
     document.addEventListener("DOMContentLoaded",()=>{
         initMap('campus-map.json');
