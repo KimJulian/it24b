@@ -36,12 +36,12 @@
         })
 
         //Satelite
-        const Satelite = L.tileLayer(
+        const Satellite = L.tileLayer(
             'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
             {attribution:'Tiles {c} Esri - Source, Maxar, Earthstar Geographics, and GIs User Community'}
         );
 
-        OpenStreetMap.addTo(Map);
+        OpenStreetMap.addTo(map);
         console.log("Base map tile layer loaded" + Date());
 
         const markerGroups = {};
@@ -67,8 +67,28 @@
                 `);
                 console.log(`{pin.name} Loaded ` + Date());
 
-            })
+                markerGroups[type].addLayer(marker);
+            });
+
+            //Add marker groups into the map according to marker filter
+            Object.values(markerGroups).forEach(group => group.addTo(map));
+
+            //Map layer Control
+            const baseMaps={
+                "OpenStreetMap":OpenStreetMap,
+                "Satellite":satellite
+            }
+
+            const overLayMaps={};
+
+            //Add marker group into base map
+            Object.keys(markerGroups).forEach(type=>{
+                overLayMap[type] = markerGroups[type];
+            });
+
+            L.control.layers(baseMaps,overLayMaps,{collapsed:false}).addTo(map);
         })
+        .catch(err=> console.error('Error Loading JSON',err));
     }
     document.addEventListener("DOMContentLoaded",()=>{
         initMap('campus-map.json');
